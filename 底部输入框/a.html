@@ -1,66 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>a</title>
-        <style>
-            #app {
-                height: 100%;
-            }
-            .wrap {
-                height: 100%;
-                flex-direction: column;
-                display: flex;
-            }
-            .ul {padding: 0;
-                margin: 0;
-                overflow: scroll;
-                flex: 1;
-                height: 100%;
-                background: #f0ad4e;
-            }
-            .bottom {
-                flex: 0 0 20px;
-                width: 100%;
-                background: #bce8f1;
-            }
-            body {
-                height: 100vh;
-                margin: 0;
-            }
-            ::-webkit-scrollbar {
-                width: 0 !important;
-                height: 0 !important;
-            }
-        </style>
-        <script src="https://cdn.bootcss.com/vue/2.4.4/vue.min.js"></script>
-    </head>
-    <body>
-        <div id="app">
-            <div class="wrap">
-                <div class="ul">
-                    <li v-for="item in list" :key="item.key">{{ item.text }}</li>
-                </div>
-                <div class="bottom">
-                    <input v-model="inp" type="text" />
-                    <button @click="send">发送</button>
-                </div>
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>a</title>
+      <style>
+         #app {
+            height: 100%;
+         }
+         .wrap {
+            height: 100%;
+            flex-direction: column;
+            display: flex;
+         }
+         .ul {
+            padding: 0;
+            margin: 0;
+            overflow: scroll;
+            flex: 1;
+            height: 100%;
+            background: #f0ad4e;
+         }
+         .bottom {
+            flex: 0 0 20px;
+            width: 100%;
+            background: #bce8f1;
+         }
+         body {
+            height: 100vh;
+            margin: 0;
+         }
+         ::-webkit-scrollbar {
+            width: 0 !important;
+            height: 0 !important;
+         }
+         .emo {
+            height: 100px;
+         }
+      </style>
+      <script src="https://cdn.bootcss.com/vue/2.4.4/vue.min.js"></script>
+   </head>
+   <body>
+      <div id="app">
+         <div class="wrap">
+            <div class="ul">
+               <li v-for="item in list" :key="item.key" :style="{color: item.color}">
+                  {{ item.text }}
+                  <button @click="clickItem(item)">变色</button>
+               </li>
             </div>
-        </div>
-        <script>
-            new Vue({
-                el: '#app',
-                data() {
-                    return { list: [], inp: '' };
-                },
-                methods: {
-                    send() {
-                        this.list.push({ key: Date.now(), text: this.inp });
-                    },
-                },
-            });
-        </script>
-    </body>
+            <div class="bottom">
+               <input v-model="inp" type="text" @focus="onFocus" />
+               <button @click="send">发送</button>
+               <button @click="show">表情</button>
+            </div>
+            <div v-show="showEmo" class="emo">
+               <button @click="inputEmo">微笑</button>
+            </div>
+         </div>
+      </div>
+      <script>
+         new Vue({
+            el: "#app",
+            data() {
+               return { list: [], inp: "", showEmo: false };
+            },
+            methods: {
+               clickItem(item) {
+                  item.color = "red";
+               },
+               onFocus() {
+                  this.showEmo = false;
+               },
+               send() {
+                  this.list.push({ key: Date.now(), text: this.inp ,color:'blue'});
+               },
+               show() {
+                  this.showEmo = !this.showEmo;
+               },
+               inputEmo() {
+                  this.inp += "[微笑]";
+               },
+            },
+         });
+      </script>
+   </body>
 </html>
