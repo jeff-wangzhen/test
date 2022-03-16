@@ -56,7 +56,7 @@
                </li>
             </div>
             <div class="bottom">
-               <input class="input" v-model="inp" type="text" @focus="onFocus" />
+               <input class="input" v-model="inp" type="text" @focus="onFocus" ref="ref" />
                <button @click="send">发送</button>
                <button @click="show">表情</button>
             </div>
@@ -83,6 +83,9 @@
                },
                show() {
                   this.showEmo = !this.showEmo;
+                  if(!this.showEmo){
+this.$refs.ref.focus()
+                  }
                },
                inputEmo() {
                   this.inp += "[微笑]";
