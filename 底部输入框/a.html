@@ -22,7 +22,8 @@
             height: 100%;
             background: #f0ad4e;
          }
-         .bottom {text-align: center;
+         .bottom {
+            text-align: center;
             flex: 0 0 20px;
             width: 100%;
             background: #bce8f1;
@@ -35,8 +36,12 @@
             width: 0 !important;
             height: 0 !important;
          }
-         .emo {text-align: center;
+         .emo {
+            text-align: center;
             height: 100px;
+         }
+         .input {
+            width: 50px;
          }
       </style>
       <script src="https://cdn.bootcss.com/vue/2.4.4/vue.min.js"></script>
@@ -51,7 +56,7 @@
                </li>
             </div>
             <div class="bottom">
-               <input v-model="inp" type="text" @focus="onFocus" />
+               <input class="input" v-model="inp" type="text" @focus="onFocus" />
                <button @click="send">发送</button>
                <button @click="show">表情</button>
             </div>
@@ -74,7 +79,7 @@
                   this.showEmo = false;
                },
                send() {
-                  this.list.push({ key: Date.now(), text: this.inp ,color:'blue'});
+                  this.list.push({ key: Date.now(), text: this.inp, color: "blue" });
                },
                show() {
                   this.showEmo = !this.showEmo;
