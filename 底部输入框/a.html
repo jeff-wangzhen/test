@@ -67,7 +67,6 @@
                   @focus="onFocus"
                   ref="ref"
                   rows="1"
-                  @keyup="autoHeight"
                ></textarea>
 
                <button @click="send">发送</button>
@@ -87,7 +86,7 @@
             },
             mounted() {
                var text = document.getElementById("textarea");
-               // this.autoTextarea(text,0,65);
+               this.autoTextarea(text,0,65);
             },
             methods: {
                clickItem(item) {
