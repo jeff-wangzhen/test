@@ -34,6 +34,13 @@
          body {
             height: 100vh;
             margin: 0;
+            height: calc(constant(safe-area-inset-bottom));
+
+            height: calc( env(safe-area-inset-bottom));
+
+            padding-bottom: constant(safe-area-inset-bottom);
+
+            padding-bottom: env(safe-area-inset-bottom);
          }
          ::-webkit-scrollbar {
             width: 0 !important;
@@ -62,14 +69,14 @@
                </li>
             </div>
             <div class="bottom">
-                  <textarea
-                     class="input"
-                     id="textarea"
-                     v-model="inp"
-                     type="text"
-                     @focus="onFocus"
-                     ref="ref"
-                  ></textarea>
+               <textarea
+                  class="input"
+                  id="textarea"
+                  v-model="inp"
+                  type="text"
+                  @focus="onFocus"
+                  ref="ref"
+               ></textarea>
 
                <button @click="send">发送</button>
                <button @click="show">表情</button>
