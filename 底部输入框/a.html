@@ -3,7 +3,10 @@
    <head>
       <meta charset="UTF-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta
+         name="viewport"
+         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover"
+      />
       <title>a</title>
       <style>
          #app {
@@ -59,15 +62,14 @@
                </li>
             </div>
             <div class="bottom">
-               <textarea
-                  class="input"
-                  id="textarea"
-                  v-model="inp"
-                  type="text"
-                  @focus="onFocus"
-                  ref="ref"
-                  rows="1"
-               ></textarea>
+                  <textarea
+                     class="input"
+                     id="textarea"
+                     v-model="inp"
+                     type="text"
+                     @focus="onFocus"
+                     ref="ref"
+                  ></textarea>
 
                <button @click="send">发送</button>
                <button @click="show">表情</button>
@@ -86,7 +88,7 @@
             },
             mounted() {
                var text = document.getElementById("textarea");
-               this.autoTextarea(text,0,65);
+               // this.autoTextarea(text,0,65);
             },
             methods: {
                clickItem(item) {
