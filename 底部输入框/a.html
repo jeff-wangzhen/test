@@ -101,7 +101,7 @@
             </div>
             <div class="bottom6">
                <div class="aaa">
-                  <div class="input qw">{{inp}}</div>
+                  <div class="input qw" v-html="inp2">{{}}</div>
 
                   <textarea
                      class="input"
@@ -126,7 +126,12 @@
          new Vue({
             el: "#app",
             data() {
-               return { list: [], inp: "", showEmo: false };
+               return { list: [], inp: "", inp2: "<br/>", showEmo: false };
+            },
+            watch: {
+               inp() {
+                  this.inp2 = this.inp.replace(/\n/g, "<br/>")+"<br/>";
+               },
             },
             mounted() {
                var text = document.getElementById("textarea");
