@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta
+         name="viewport"
+         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover"
+      />
+      <title>a</title>
+      <style>
+         #app {
+            height: 100%;
+         }
+         .wrap {
+            height: 100%;
+            flex-direction: column;
+            display: flex;
+         }
+         .ul {
+            padding: 0;
+            margin: 0;
+            overflow: scroll;
+            flex: 1;
+            height: 100%;
+            background: #f0ad4e;
+         }
+         .bottom {
+            text-align: center;
+            flex: 0 0 20px;
+            width: 100%;
+            background: #bce8f1;
+         }
+         body {
+            height: 100vh;
+            margin: 0;
+            padding-bottom: constant(safe-area-inset-bottom);
+
+            padding-bottom: env(safe-area-inset-bottom);
+         }
+         ::-webkit-scrollbar {
+            width: 0 !important;
+            height: 0 !important;
+         }
+         .emo {
+            text-align: center;
+            height: 100px;
+         }
+         .input {
+            width: 50px;
+            max-height: 65px;
+            padding: 0;
+            margin: 0;
+         }
+      </style>
+      <script src="https://cdn.bootcss.com/vue/2.4.4/vue.min.js"></script>
+   </head>
+   <body>
+      <div id="app">
+         <div class="wrap">
+            <div class="ul">
+               <li v-for="item in list" :key="item.key" :style="{color: item.color}">
+                  {{ item.text }}
+                  <button @click="clickItem(item)">变色</button>
+               </li>
+            </div>
+            <div class="bottom">
+               <textarea
+                  class="input"
+                  id="textarea"
+                  v-model="inp"
+                  type="text"
+                  @focus="onFocus"
+                  ref="ref"
+               ></textarea>
+
+               <button @click="send">发送</button>
+               <button @click="show">表情</button>
+            </div>
+            <div v-show="showEmo" class="emo">
+               <button @click="inputEmo">微笑</button>
+            </div>
+         </div>
+      </div>
+
+      <script>
+         new Vue({
+            el: "#app",
+            data() {
+               return { list: [], inp: "", showEmo: false };
+            },
+            mounted() {
+               var text = document.getElementById("textarea");
+               this.autoTextarea(text, 0, 65);
+               setTimeout(function () {
+                  window.scrollTo(0, 1);
+               }, 0);
+            },
+            methods: {
+               clickItem(item) {
+                  item.color = "red";
+               },
+               onFocus() {
+                  this.showEmo = false;
+               },
+               send() {
+                  this.list.push({ key: Date.now(), text: this.inp, color: "blue" });
+               },
+               show() {
+                  this.showEmo = !this.showEmo;
+                  if (!this.showEmo) {
+                     this.$refs.ref.focus();
+                  }
+               },
+               inputEmo() {
+                  this.inp += "[微笑]";
+               },
+               autoHeight() {
+                  console.log(1);
+                  const elem = this.$refs.ref;
+                  elem.style.height = "auto";
+                  elem.scrollTop = 0; //防抖动
+                  const a = elem.scrollHeight > 65 ? 65 : elem.scrollHeight;
+
+                  elem.style.height = a + "px";
+               },
+               autoTextarea(elem, extra, maxHeight) {
+                  extra = extra || 0;
+                  var isFirefox = !!document.getBoxObjectFor || "mozInnerScreenX" in window,
+                     isOpera = !!window.opera && !!window.opera.toString().indexOf("Opera"),
+                     addEvent = function (type, callback) {
+                        elem.addEventListener
+                           ? elem.addEventListener(type, callback, false)
+                           : elem.attachEvent("on" + type, callback);
+                     },
+                     getStyle = elem.currentStyle
+                        ? function (name) {
+                             var val = elem.currentStyle[name];
+
+                             if (name === "height" && val.search(/px/i) !== 1) {
+                                var rect = elem.getBoundingClientRect();
+                                return (
+                                   rect.bottom -
+                                   rect.top -
+                                   parseFloat(getStyle("paddingTop")) -
+                                   parseFloat(getStyle("paddingBottom")) +
+                                   "px"
+                                );
+                             }
+
+                             return val;
+                          }
+                        : function (name) {
+                             return getComputedStyle(elem, null)[name];
+                          },
+                     minHeight = parseFloat(getStyle("height"));
+
+                  elem.style.resize = "none";
+
+                  var change = function () {
+                     var scrollTop,
+                        height,
+                        padding = 0,
+                        style = elem.style;
+
+                     if (elem._length === elem.value.length) return;
+                     elem._length = elem.value.length;
+
+                     if (!isFirefox && !isOpera) {
+                        padding =
+                           parseInt(getStyle("paddingTop")) + parseInt(getStyle("paddingBottom"));
+                     }
+                     scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+
+                     elem.style.height = minHeight + "px";
+                     if (elem.scrollHeight > minHeight) {
+                        if (maxHeight && elem.scrollHeight > maxHeight) {
+                           height = maxHeight - padding;
+                           style.overflowY = "auto";
+                        } else {
+                           height = elem.scrollHeight - padding;
+                           style.overflowY = "hidden";
+                        }
+                        style.height = height + extra + "px";
+                        scrollTop += parseInt(style.height) - elem.currHeight;
+                        document.body.scrollTop = scrollTop;
+                        document.documentElement.scrollTop = scrollTop;
+                        elem.currHeight = parseInt(style.height);
+                     }
+                  };
+
+                  addEvent("propertychange", change);
+                  addEvent("input", change);
+                  addEvent("focus", change);
+                  change();
+               },
+            },
+         });
+      </script>
+   </body>
+</html>
