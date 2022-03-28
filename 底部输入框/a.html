@@ -31,6 +31,7 @@
             width: 100%;
             background: #bce8f1;
          }
+         .bottom6{text-align: center;}
          body {
             height: 100vh;
             margin: 0;
@@ -46,11 +47,32 @@
             text-align: center;
             height: 100px;
          }
-         .input {
+         textarea {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;border: 0 ;
+         }
+         .aaa {
+            overflow: hidden;
+            position: relative;
             width: 50px;
-            max-height: 65px;
+            /* margin: 0 auto; */
+            display: inline-block;
+         }
+         .qw {
+            max-height: 90px;
+         }
+         .input {
+            word-break: break-all;
+
             padding: 0;
             margin: 0;
+            background: azure;
+            font-size: 16px;
+            font-family: auto;
+            min-height: 22px;
          }
       </style>
       <script src="https://cdn.bootcss.com/vue/2.4.4/vue.min.js"></script>
@@ -64,15 +86,19 @@
                   <button @click="clickItem(item)">变色</button>
                </li>
             </div>
-            <div class="bottom">
-               <textarea
-                  class="input"
-                  id="textarea"
-                  v-model="inp"
-                  type="text"
-                  @focus="onFocus"
-                  ref="ref"
-               ></textarea>
+            <div class="bottom6">
+               <div class="aaa">
+                  <div class="input qw">{{inp}}</div>
+
+                  <textarea
+                     class="input"
+                     id="textarea"
+                     v-model="inp"
+                     type="text"
+                     @focus="onFocus"
+                     ref="ref"
+                  ></textarea>
+               </div>
 
                <button @click="send">发送</button>
                <button @click="show">表情</button>
