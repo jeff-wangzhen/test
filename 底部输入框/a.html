@@ -56,7 +56,14 @@
                </li>
             </div>
             <div class="bottom">
-               <input class="input" v-model="inp" type="text" @focus="onFocus" ref="ref" />
+               <input
+                  class="input"
+                  v-model="inp"
+                  type="text"
+                  @focus="onFocus"
+                  ref="ref"
+                  @keyup.native="autoHeight"
+               />
                <button @click="send">发送</button>
                <button @click="show">表情</button>
             </div>
@@ -83,12 +90,18 @@
                },
                show() {
                   this.showEmo = !this.showEmo;
-                  if(!this.showEmo){
-this.$refs.ref.focus()
+                  if (!this.showEmo) {
+                     this.$refs.ref.focus();
                   }
                },
                inputEmo() {
                   this.inp += "[微笑]";
+               },
+               autoHeight() {
+                  const elem = this.$refs.ref;
+                  elem.style.height = "auto";
+                  elem.scrollTop = 0; //防抖动
+                  elem.style.height = elem.scrollHeight + "px";
                },
             },
          });
