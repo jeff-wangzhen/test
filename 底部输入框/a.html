@@ -129,17 +129,17 @@
          new Vue({
             el: "#app",
             data() {
-               return { list: [], inp: "", inp2: "<br/>", showEmo: false };
+               return { list: [], inp: "", inp2: "", showEmo: false };
             },
             watch: {
                inp() {
-                  this.inp2 =
-                     this.inp +
-                     // .replace(/&/g, "&amp;")
-                     // .replace(/</g, "&lt;")
-                     // .replace(/>/g, "&gt;")
-                     "\n";
+                  this.inp2 = this.inp + "\n";
+                  localStorage.setItem("inp", this.inp);
                },
+            },
+            created() {
+               this.inp = localStorage.getItem("inp") || "";
+               this.inp2 = this.inp + "\n";
             },
             mounted() {
                var text = document.getElementById("textarea");
