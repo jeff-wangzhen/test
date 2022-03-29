@@ -72,6 +72,8 @@
             max-height: 80px;
          }
          .input {
+            white-space: pre-wrap;
+            word-spacing: normal;
             word-break: break-all;
             width: 100%;
             line-height: 20px;
@@ -81,6 +83,7 @@
             font-size: 16px;
             font-family: auto;
             min-height: 22px;
+            text-align: left;
          }
          button {
             height: 30px;
@@ -101,7 +104,7 @@
             </div>
             <div class="bottom6">
                <div class="aaa">
-                  <div class="input qw" v-html="inp2">{{}}</div>
+                  <div class="input qw">{{inp2}}</div>
 
                   <textarea
                      class="input"
@@ -130,7 +133,12 @@
             },
             watch: {
                inp() {
-                  this.inp2 = this.inp.replace(/\n/g, "<br/>")+"<br/>";
+                  this.inp2 =
+                     this.inp +
+                     // .replace(/&/g, "&amp;")
+                     // .replace(/</g, "&lt;")
+                     // .replace(/>/g, "&gt;")
+                     "\n";
                },
             },
             mounted() {
