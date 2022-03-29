@@ -154,6 +154,7 @@
                },
                send() {
                   this.list.push({ key: Date.now(), text: this.inp, color: "blue" });
+                  localStorage.setItem("inp", '');
                },
                show() {
                   this.showEmo = !this.showEmo;
