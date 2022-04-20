@@ -13,7 +13,7 @@
    </head>
    <body>
       <div id="app">{{a}}</div>
-      <script>
+      <script>window.onload=function(){setTimeout(function() {window.scrollTo(0, 1)}, 0)}
          document.write(121, window);
          window.onresize = function () {
             console.log(11,  document.body.innerHTML)
