@@ -7,37 +7,58 @@
       <title>Document</title>
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-      <meta name="browsermode" content="application">
+      <meta name="browsermode" content="application" />
       <meta name="full-screen" content="yes" />
       <meta name="x5-fullscreen" content="true" />
       <meta name="x5-page-mode" content="app" />
       <meta name="360-fullscreen" content="true" />
       <style>
-         body{height: 10000px;}
+         body {
+            height: 10000px;
+         }
+         .a {
+            position: fixed; top:10vw;
+         }
+         .b {
+            position: fixed; bottom:10vw;
+         }
+         .c{
+            position: fixed; top:10vh;
+         }
+         .d{
+            position: fixed; bottom:10vh;
+         }
       </style>
       <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.13/vue.min.js"></script>
    </head>
    <body>
-      <div id="app">{{a}}</div>
-      <script>window.onload=function(){setTimeout(function() {window.scrollTo(0, 1)}, 0)}
-         document.write(121, window);
-         window.onresize = function () {
-            console.log(11,  document.body.innerHTML)
-            document.body.innerHTML+='<br/>'+Date.now();
-         };
+      <div class="a">position: fixed; top:10vw;</div>
+      <div class="b">position: fixed; bottom:10vw;</div>
+      <div class="c">position: fixed; top:10vh;</div>
+      <div class="d">position: fixed; bottom:10vh;</div>
+      <script>
+         // window.onload = function () {
+         //    setTimeout(function () {
+         //       window.scrollTo(0, 1);
+         //    }, 0);
+         // };
+         // document.write(121, window);
+         // window.onresize = function () {
+         //    console.log(11, document.body.innerHTML);
+         //    document.body.innerHTML += "<br/>" + Date.now();
+         // };
          // new Vue({
          //    data() {
          //       return { a: window.innerHeight };
          //    },
          // }).mount("#app");
-new Vue({
-    el: '#app',
-    mounted() {},
-    data() {
-               return { a: window.innerWidth };
-            },
-});
-
+         // new Vue({
+         //    el: "#app",
+         //    mounted() {},
+         //    data() {
+         //       return { a: window.innerWidth };
+         //    },
+         // });
       </script>
    </body>
 </html>
