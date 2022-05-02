@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcss.com/vue/2.4.4/vue.min.js"></script>
+    <title>Document</title><style>
+         .warper {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch; /* 解决ios滑动不流畅问题 */
+      }
+      .fix-bottom {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
+</head>
+<body>
+    <body>
+        <div class='warper'>1
+          
+          <div class='main'>2</div>
+        <div>
+        <div class="fix-bottom">3
+
+            <input type="text">
+        </div>
+      </body>
+      <script>
+        setInterval(() => (document.getElementsByClassName('warper')[0].innerHTML+='<br/>'+ window.innerHeight), 1000);
+          </script>
+</body>
+</html>
