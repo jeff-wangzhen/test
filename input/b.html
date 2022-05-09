@@ -60,12 +60,16 @@
             methods: {
                send1() {
                   const qwe = document.getElementById("qwe");
+
+                  rectObject = qwe.getBoundingClientRect();
+
                   const obj = {
                      innerHeight: window.innerHeight,
 
                      scrollTop: document.documentElement.scrollTop,
                      scrollHeight: document.documentElement.scrollHeight,
                      offsetTop: qwe.offsetTop,
+                     rectObject,
                   };
                   this.list.push({
                      key: Date.now(),
