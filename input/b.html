@@ -52,22 +52,24 @@
          </div>
       </div>
       <script>
-       
          new Vue({
             el: "#app",
             data() {
                return { list: [], inp: "" };
             },
             methods: {
-               send1() {  const qwe = document.getElementById("qwe");
+               send1() {
+                  const qwe = document.getElementById("qwe");
+                  const obj = {
+                     innerHeight: window.innerHeight,
+
+                     scrollTop: document.documentElement.scrollTop,
+                     scrollHeight: document.documentElement.scrollHeight,
+                     offsetTop: qwe.offsetTop,
+                  };
                   this.list.push({
                      key: Date.now(),
-                     text:
-                        window.innerHeight +
-                        "-" +
-                        document.documentElement.scrollTop +
-                        "--" +
-                        qwe.offsetTop,
+                     text: JSON.stringify(obj),
                   });
                },
                send() {
