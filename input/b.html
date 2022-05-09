@@ -52,14 +52,14 @@
          </div>
       </div>
       <script>
-         const qwe = document.getElementById("qwe");
+       
          new Vue({
             el: "#app",
             data() {
                return { list: [], inp: "" };
             },
             methods: {
-               send1() {
+               send1() {  const qwe = document.getElementById("qwe");
                   this.list.push({
                      key: Date.now(),
                      text:
