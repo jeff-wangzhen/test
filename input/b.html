@@ -46,7 +46,7 @@
                <li v-for="item in list" :key="item.key">{{ item.text }}</li>
             </ul>
             <div class="bottom" id="qwe">
-               <input @click="send1" v-model="inp" type="text" />
+               <input id="input" @focus="focus" @click="send1" v-model="inp" type="text" />
                <button @click="send">发送</button>
             </div>
          </div>
@@ -58,6 +58,11 @@
                return { list: [], inp: "" };
             },
             methods: {
+               focus() {
+                  setTimeout(() => {
+                     document.getElementById("input").scrollIntoView();
+                  }, 500);
+               },
                send1() {
                   const qwe = document.getElementById("qwe");
 
