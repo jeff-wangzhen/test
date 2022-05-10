@@ -97,9 +97,12 @@
       <div id="app">
          <div class="wrap">
             <div class="ul">
+               <li v-for="item in 100" :key="item">
+                  {{ item }}
+               </li>
                <li v-for="item in list" :key="item.key" :style="{color: item.color}">
                   {{ item.text }}
-                  <button @click="clickItem(item)">变色</button>
+                  <!-- <button @click="clickItem(item)">变色</button> -->
                </li>
             </div>
             <div class="bottom6">

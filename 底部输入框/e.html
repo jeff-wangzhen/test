@@ -1,15 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        body{background-color: #aaa;}
-    </style>
-</head>
-<body>
-    <input/>
-</body>
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta
+         name="viewport"
+         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover"
+      />
+      <title>a</title>
+      <style>
+         #app {
+            height: 100%;
+         }
+         .wrap {
+            height: 100%;
+            flex-direction: column;
+            display: flex;
+         }
+         .ul {
+            padding: 0;
+            margin: 0;
+            overflow: scroll;
+            flex: 1;
+            height: 100%;
+            background: #f0ad4e;
+         }
+         .bottom {
+            text-align: center;
+            flex: 0 0 20px;
+            width: 100%;
+         }
+         .bottom6 {
+            background: #bce8f1;
+            text-align: center;
+            display: flex;
+            align-items: center;
+         }
+         body {
+            height: 100vh;
+            margin: 0;
+         }
+         /* ::-webkit-scrollbar {
+            width: 0 !important;
+            height: 0 !important;
+         } */
+      </style>
+      <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.14/vue.min.js"></script>
+   </head>
+   <body>
+      <div id="app">
+         <div class="wrap">
+            <div class="ul">
+               <li v-for="item in 100" :key="item">{{ item }}</li>
+               <li v-for="item in list" :key="item.key" :style="{color: item.color}">
+                  {{ item.text }}
+                  <!-- <button @click="clickItem(item)">变色</button> -->
+               </li>
+            </div>
+            <div class="bottom6">
+               <input class="input" v-model="inp" />
+
+               <button @click="send">发送</button>
+            </div>
+         </div>
+      </div>
+
+      <script>
+         new Vue({
+            el: "#app",
+            data() {
+               return { list: [], inp: "", showEmo: false };
+            },
+            watch: {
+               inp() {
+                  localStorage.setItem("inp", this.inp);
+               },
+            },
+            created() {
+               this.inp = localStorage.getItem("inp") || "";
+            },
+            methods: {
+               send() {
+                  this.list.push({
+                     key: Date.now(),
+                     text: window.innerHeight + this.inp,
+                     color: "blue",
+                  });
+                  localStorage.setItem("inp", "");
+                  this.inp = "";
+                  this.inp2 = this.inp + "\n";
+               },
+            },
+         });
+      </script>
+   </body>
 </html>
