@@ -34,9 +34,7 @@
          body {
             height: 100vh;
             margin: 0;
-            /* padding-bottom: constant(safe-area-inset-bottom);
-
-            padding-bottom: env(safe-area-inset-bottom); */
+            /* */
          }
          ::-webkit-scrollbar {
             width: 0 !important;
@@ -45,6 +43,11 @@
          .emo {
             text-align: center;
             height: 100px;
+         }
+         .bottom{ padding-bottom: constant(safe-area-inset-bottom);
+
+padding-bottom: env(safe-area-inset-bottom);
+
          }
          .input {
             width: 50px;
