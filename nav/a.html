@@ -25,12 +25,16 @@
       </style>
    </head>
    <body>
-      <div id="nav">导航栏</div>
+      <div id="nav">
+         <div class="title">导航栏</div>
+      </div>
       <div id="text">文字滚动到顶部时，导航栏完全不透明</div>
       <script>
          const nav = document.getElementById("nav");
          window.onscroll = () => {
-            nav.style.opacity = document.documentElement.scrollTop / 300;
+            nav.style.backgroundColor = `rgba(255,255,255, ${
+               document.documentElement.scrollTop / 300
+            })`;
          };
       </script>
    </body>
