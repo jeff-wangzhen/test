@@ -2,17 +2,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>项目文件目录</title>
+  <title>Directory Listing</title>
   <style>
-    body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; }
-    ul { list-style-type: none; padding-left: 20px; }
+    .tree { list-style: none; padding-left: 1em; }
+    .folder-header { cursor: pointer; padding: 4px; }
+    .folder-header:hover { background: #f0f0f0; }
+    .arrow { display: inline-block; width: 1em; }
+    .folder-content { margin-left: 1.2em; } /* 增加层级缩进 */
+    .file { padding: 2px 0; }
     a { color: #0366d6; text-decoration: none; }
     a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
-  <h1>📁 项目文件目录</h1>
-  <ul></ul>
+  <ul class="tree"></ul>
+  
+<script>
+  function toggleFolder(element) {
+    const content = element.nextElementSibling;
+    const arrow = element.querySelector('.arrow');
+    content.style.display = content.style.display === 'none' ? 'block' : 'none';
+    arrow.textContent = content.style.display === 'none' ? '▶' : '▼';
+  }
+</script>
+
 </body>
 </html>
-  
