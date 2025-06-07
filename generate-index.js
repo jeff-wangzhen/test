@@ -26,7 +26,7 @@ function generateDirectoryEntry(dirPath, basePath = '') {
             </div>
           </li>`;
       } else {
-        html += `<li class="file"><a href="${relativePath}">${entry.name}</a></li>`;
+        html += `<li class="file"><a href="/src/${relativePath}">${entry.name}</a></li>`;
       }
     });
 

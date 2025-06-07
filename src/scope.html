@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+   <body>
+        
+      <ul onclick="highlightOdds(event)">
+             
+         <li><strong>A</strong></li>
+             
+         <li><strong>B</strong></li>
+             
+         <li><strong>C</strong></li>
+             
+         <li><strong>D</strong></li>
+           
+      </ul>
+        
+      <script>
+         function highlightOdds(event) {
+            const targets = event.currentTarget.querySelectorAll(":nth-child(odd)");
+            console.log(3423,targets)
+            for (const node of targets) {
+               node.style.backgroundColor = "limegreen";
+               node.style.color = "white";
+            }
+         }
+      </script>
+   </body>
+</html>
