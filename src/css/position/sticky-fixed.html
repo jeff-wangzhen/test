@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            .flex {
+                display: flex;
+                width: 500px;
+            }
+            .left {
+                width: 200px;
+                height: 100px;
+                background-color: red;
+            }
+            .absolute {
+                position: absolute;
+                width: 200px;
+            }
+            .fixed {
+                width: 200px;
+                position: fixed;
+                /* position: sticky; */
+            }
+            .center-content {
+                width: 200px;
+                height: 100px;
+                background-color: blue;
+            }
+            .right {
+                width: 200px;
+                height: 100px;
+                background-color: green;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="flex">
+            <div class="left">
+                <div class="absolute"></div>
+                <div class="fixed"></div>
+            </div>
+
+            <div class="center-content"></div>
+            <div class="right"></div>
+        </div>
+    </body>
+</html>
