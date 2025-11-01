@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            .bottom-input {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                display: flex;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="bottom-input">
+            <input id="text-input" type="text" placeholder="请输入内容" />
+            <input id="file-btn" type="file" placeholder="请输入内容" />
+        </div>
+        <script>
+            const fileBtn = document.getElementById('file-btn');
+            fileBtn.addEventListener('click', (e) => {
+                const textInput = document.getElementById('text-input');
+                textInput.focus();
+            });
+        </script>
+    </body>
+</html>
